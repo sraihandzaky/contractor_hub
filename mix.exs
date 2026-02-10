@@ -51,7 +51,7 @@ defmodule ContractorHub.MixProject do
       {:bandit, "~> 1.5"},
       {:ex_machina, "~> 2.8", only: :test},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:open_api_spex, "~> 3.18"},
+      {:open_api_spex, "~> 3.18"}
     ]
   end
 
