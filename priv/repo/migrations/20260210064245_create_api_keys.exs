@@ -12,7 +12,6 @@ defmodule ContractorHub.Repo.Migrations.CreateApiKeys do
       timestamps()
     end
 
-
     create unique_index(:api_keys, [:key_hash])
     create index(:api_keys, [:company_id])
   end
