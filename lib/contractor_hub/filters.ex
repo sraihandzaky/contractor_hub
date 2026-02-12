@@ -11,11 +11,13 @@ defmodule ContractorHub.Filters do
 
   ## Example
 
-      @filters [
-        {"country_code", Filters.eq(:country_code)},
-        {"status", Filters.eq(:status)},
-        {"search", Filters.ilike(:full_name)}
-      ]
+      defp filters do
+        [
+          {"country_code", Filters.eq(:country_code)},
+          {"status", Filters.eq(:status)},
+          {"search", Filters.ilike(:full_name)}
+        ]
+      end
 
       Contractor
       |> Filters.apply_filters(params, @filters)
