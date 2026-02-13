@@ -25,7 +25,23 @@ config :contractor_hub, ContractorHubWeb.Endpoint,
 # Configure Elixir's Logger
 config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [
+    :request_id,
+    :contractor_id,
+    :company_id,
+    :country_code,
+    :contract_id,
+    :rate_currency,
+    :rate_type,
+    :country,
+    :company,
+    :count,
+    :currency,
+    :type,
+    :rate,
+    :amount,
+    :status
+  ]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
