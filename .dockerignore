@@ -1,0 +1,34 @@
+# This file tells Docker which files and directories to ignore
+# when building the image.
+
+# Ignore git directory
+.git
+
+# Ignore build artifacts
+_build
+deps
+
+# Ignore node modules (if applicable)
+assets/node_modules
+
+# Ignore CI/CD and editor config
+.github
+.vscode
+.elixir_ls
+
+# Ignore test files
+test
+
+# Ignore Docker-related files
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Ignore documentation
+*.md
+
+# Ignore environment files
+.env*
+
+# Ignore temporary files
+tmp
