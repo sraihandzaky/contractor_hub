@@ -1,8 +1,8 @@
 defmodule ContractorHub.SortingTest do
   use ContractorHub.DataCase, async: true
 
-  alias ContractorHub.Sorting
   alias ContractorHub.Contractors.Contractor
+  alias ContractorHub.Sorting
 
   @allowed_fields [:inserted_at, :full_name, :country_code]
 

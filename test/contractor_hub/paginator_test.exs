@@ -3,8 +3,8 @@ defmodule ContractorHub.PaginatorTest do
 
   import ContractorHub.Factory
 
-  alias ContractorHub.Paginator
   alias ContractorHub.Contractors.Contractor
+  alias ContractorHub.Paginator
 
   setup do
     company = insert(:company)

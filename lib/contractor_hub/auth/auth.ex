@@ -1,8 +1,8 @@
 defmodule ContractorHub.Auth do
   @moduledoc "API key generation, verification, and management."
 
-  alias ContractorHub.Repo
   alias ContractorHub.Auth.ApiKey
+  alias ContractorHub.Repo
 
   import Ecto.Query
 

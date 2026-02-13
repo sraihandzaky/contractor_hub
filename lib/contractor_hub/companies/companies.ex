@@ -1,9 +1,9 @@
 defmodule ContractorHub.Companies do
   @moduledoc "Context for company registration and management."
 
-  alias ContractorHub.Repo
-  alias ContractorHub.Companies.Company
   alias ContractorHub.Auth
+  alias ContractorHub.Companies.Company
+  alias ContractorHub.Repo
   alias ContractorHub.Scope
 
   @doc """

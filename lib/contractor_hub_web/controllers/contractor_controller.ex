@@ -6,10 +6,10 @@ defmodule ContractorHubWeb.ContractorController do
   alias ContractorHub.Contractors
 
   alias ContractorHubWeb.Schemas.{
-    ContractorRequest,
-    ContractorUpdateRequest,
-    ContractorResponse,
     ContractorListResponse,
+    ContractorRequest,
+    ContractorResponse,
+    ContractorUpdateRequest,
     ProblemDetail,
     ValidationError
   }

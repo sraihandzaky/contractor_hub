@@ -3,8 +3,8 @@ defmodule ContractorHub.FiltersTest do
 
   import ContractorHub.Factory
 
-  alias ContractorHub.{Filters, Repo}
   alias ContractorHub.Contractors.Contractor
+  alias ContractorHub.{Filters, Repo}
 
   setup do
     company = insert(:company)

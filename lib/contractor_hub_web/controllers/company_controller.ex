@@ -7,8 +7,8 @@ defmodule ContractorHubWeb.CompanyController do
 
   alias ContractorHubWeb.Schemas.{
     CompanyRequest,
-    CompanyUpdateRequest,
     CompanyResponse,
+    CompanyUpdateRequest,
     CompanyWithKeyResponse,
     ProblemDetail,
     ValidationError
