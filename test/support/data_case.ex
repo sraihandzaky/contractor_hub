@@ -26,6 +26,7 @@ defmodule ContractorHub.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import ContractorHub.DataCase
+      import ContractorHub.Factory
     end
   end
 

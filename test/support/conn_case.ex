@@ -28,6 +28,7 @@ defmodule ContractorHubWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import ContractorHubWeb.ConnCase
+      import ContractorHub.Factory
     end
   end
 
