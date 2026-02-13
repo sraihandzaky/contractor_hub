@@ -1,9 +1,49 @@
 defmodule ContractorHubWeb.CompanyController do
   use ContractorHubWeb, :controller
+  use OpenApiSpex.ControllerSpecs
 
   alias ContractorHub.Companies
 
+  alias ContractorHubWeb.Schemas.{
+    CompanyRequest,
+    CompanyUpdateRequest,
+    CompanyResponse,
+    CompanyWithKeyResponse,
+    ProblemDetail,
+    ValidationError
+  }
+
   action_fallback ContractorHubWeb.FallbackController
+
+  tags ["Companies"]
+
+  operation :create,
+    summary: "Register a new company",
+    description: "Creates a company account and returns an API key for authentication",
+    security: [],
+    request_body: {"Company registration params", "application/json", CompanyRequest},
+    responses: [
+      created: {"Company with API key", "application/json", CompanyWithKeyResponse},
+      unprocessable_entity: {"Validation error", "application/json", ValidationError}
+    ]
+
+  operation :show,
+    summary: "Get current company",
+    description: "Returns the authenticated company's details",
+    responses: [
+      ok: {"Company details", "application/json", CompanyResponse},
+      unauthorized: {"Unauthorized", "application/json", ProblemDetail}
+    ]
+
+  operation :update,
+    summary: "Update current company",
+    description: "Updates the authenticated company's details",
+    request_body: {"Company update params", "application/json", CompanyUpdateRequest},
+    responses: [
+      ok: {"Updated company", "application/json", CompanyResponse},
+      unauthorized: {"Unauthorized", "application/json", ProblemDetail},
+      unprocessable_entity: {"Validation error", "application/json", ValidationError}
+    ]
 
   # POST /api/v1/companies — public, returns API key
   @spec create(any(), map()) :: {:error, any()} | Plug.Conn.t()

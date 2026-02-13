@@ -15,8 +15,8 @@ defmodule ContractorHubWeb.ApiSpec do
         """
       },
       servers: [
-        %Server{url: "https://contractor-hub-api.fly.dev", description: "Production"},
-        %Server{url: "http://localhost:4000", description: "Development"}
+        %Server{url: "http://localhost:4000", description: "Development"},
+        %Server{url: "https://contractor-hub-api.fly.dev", description: "Production"}
       ],
       components: %Components{
         securitySchemes: %{
