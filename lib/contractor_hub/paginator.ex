@@ -58,6 +58,8 @@ defmodule ContractorHub.Paginator do
       where:
         q.inserted_at < ^inserted_at or
           (q.inserted_at == ^inserted_at and q.id < ^id)
+  rescue
+    _ -> query
   end
 
   defp apply_cursor(query, %{"before" => cursor}, :before) when is_binary(cursor) do
@@ -67,6 +69,8 @@ defmodule ContractorHub.Paginator do
       where:
         q.inserted_at > ^inserted_at or
           (q.inserted_at == ^inserted_at and q.id > ^id)
+  rescue
+    _ -> query
   end
 
   defp apply_cursor(query, _params, _dir), do: query
