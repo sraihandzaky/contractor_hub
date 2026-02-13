@@ -1,12 +1,18 @@
 defmodule ContractorHubWeb.Router do
   use ContractorHubWeb, :router
 
+  def api_spec, do: ContractorHubWeb.ApiSpec.spec()
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   pipeline :authenticated do
     plug ContractorHubWeb.Plugs.Authenticate
+  end
+
+  pipeline :openapi do
+    plug OpenApiSpex.Plug.PutApiSpec, module: ContractorHubWeb.ApiSpec
   end
 
   # Public routes (no auth)
@@ -36,4 +42,12 @@ defmodule ContractorHubWeb.Router do
 
     get "/audit-logs", AuditLogController, :index
   end
+
+  # OpenAPI docs
+  scope "/api" do
+  pipe_through [:api, :openapi]
+
+  get "/openapi", OpenApiSpex.Plug.RenderSpec, []
+  get "/docs", OpenApiSpex.Plug.SwaggerUI, path: "/api/openapi"
+end
 end
