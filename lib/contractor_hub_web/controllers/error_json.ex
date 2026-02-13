@@ -1,5 +1,5 @@
 defmodule ContractorHubWeb.ErrorJSON do
-  @moduledoc "Renders errors in RFC 7807 format. https://www.rfc-editor.org/rfc/rfc7807.html"
+  @moduledoc "Renders errors in RFC 9457 format. https://www.rfc-editor.org/rfc/rfc9457"
 
   def render("problem.json", assigns) do
     %{
