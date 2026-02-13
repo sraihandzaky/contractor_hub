@@ -87,7 +87,9 @@ defmodule ContractorHub.Contracts do
       )
       |> Repo.transaction()
       |> case do
-        {:ok, %{contract: contract}} -> {:ok, contract}
+        {:ok, %{contract: contract}} ->
+          ContractorHub.Telemetry.emit_contract_activated(contract)
+          {:ok, contract}
         {:error, :contract, changeset, _} -> {:error, changeset}
       end
     end
@@ -130,7 +132,9 @@ defmodule ContractorHub.Contracts do
       )
       |> Repo.transaction()
       |> case do
-        {:ok, %{contract: contract}} -> {:ok, contract}
+        {:ok, %{contract: contract}} ->
+          ContractorHub.Telemetry.emit_contract_terminated(contract)
+          {:ok, contract}
         {:error, :contract, changeset, _} -> {:error, changeset}
       end
     end

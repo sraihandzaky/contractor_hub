@@ -30,7 +30,9 @@ defmodule ContractorHub.Contractors do
     )
     |> Repo.transaction()
     |> case do
-      {:ok, %{contractor: contractor}} -> {:ok, contractor}
+      {:ok, %{contractor: contractor}} ->
+        ContractorHub.Telemetry.emit_contractor_onboarded(contractor)
+        {:ok, contractor}
       {:error, :contractor, changeset, _} -> {:error, changeset}
     end
   end
@@ -103,7 +105,9 @@ defmodule ContractorHub.Contractors do
       )
       |> Repo.transaction()
       |> case do
-        {:ok, %{contractor: contractor}} -> {:ok, contractor}
+        {:ok, %{contractor: contractor}} ->
+          ContractorHub.Telemetry.emit_contractor_offboarded(contractor)
+          {:ok, contractor}
         {:error, :contractor, changeset, _} -> {:error, changeset}
       end
     end
