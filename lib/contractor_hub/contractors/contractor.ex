@@ -27,7 +27,7 @@ defmodule ContractorHub.Contractors.Contractor do
     |> validate_length(:country_code, is: 2)
     |> validate_inclusion(:status, ~w(pending active offboarded))
     |> validate_country_supported()
-    |> unique_constraint([:company_id, :email])
+    |> unique_constraint([:company_id, :email], error_key: :email)
     |> validate_country_requirements()
   end
 
