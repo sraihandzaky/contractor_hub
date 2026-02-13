@@ -12,7 +12,12 @@ defmodule ContractorHub.AuditTest do
     # Create audit logs by onboarding contractors
     {:ok, contractor} =
       ContractorHub.Contractors.onboard_contractor(
-        %{"email" => "a@test.com", "full_name" => "A", "country_code" => "US", "tax_id" => "111-11-1111"},
+        %{
+          "email" => "a@test.com",
+          "full_name" => "A",
+          "country_code" => "US",
+          "tax_id" => "111-11-1111"
+        },
         context
       )
 

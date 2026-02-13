@@ -52,9 +52,7 @@ defmodule ContractorHub.Contractors.Contractor do
     if new_status in allowed do
       changeset
     else
-      add_error(changeset, :status,
-        "cannot transition from #{old_status} to #{new_status}"
-      )
+      add_error(changeset, :status, "cannot transition from #{old_status} to #{new_status}")
     end
   end
 

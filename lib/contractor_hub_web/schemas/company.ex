@@ -46,7 +46,8 @@ defmodule ContractorHubWeb.Schemas.CompanyWithKeyResponse do
       data: ContractorHubWeb.Schemas.CompanyData,
       api_key: %OpenApiSpex.Schema{
         type: :string,
-        description: "API key for authenticating future requests. Store securely — it cannot be retrieved again."
+        description:
+          "API key for authenticating future requests. Store securely — it cannot be retrieved again."
       }
     },
     required: [:data, :api_key]

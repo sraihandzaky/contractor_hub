@@ -38,7 +38,8 @@ defmodule ContractorHub.Factory do
   def api_key_factory do
     %ContractorHub.Auth.ApiKey{
       company: build(:company),
-      key_hash: sequence(:key_hash, &Base.encode16(:crypto.hash(:sha256, "key_#{&1}"), case: :lower)),
+      key_hash:
+        sequence(:key_hash, &Base.encode16(:crypto.hash(:sha256, "key_#{&1}"), case: :lower)),
       label: "Test Key"
     }
   end

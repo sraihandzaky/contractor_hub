@@ -7,7 +7,6 @@ defmodule ContractorHub.Application do
 
   @impl true
   def start(_type, _args) do
-
     ContractorHub.TelemetryHandler.attach()
 
     children = [

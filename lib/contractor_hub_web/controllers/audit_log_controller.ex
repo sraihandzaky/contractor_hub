@@ -6,13 +6,17 @@ defmodule ContractorHubWeb.AuditLogController do
   alias ContractorHub.Audit
   alias ContractorHubWeb.Schemas.{AuditLogListResponse, ProblemDetail}
 
-  tags ["Audit Logs"]
+  tags(["Audit Logs"])
 
-  operation :index,
+  operation(:index,
     summary: "List audit logs",
     description: "Returns a paginated list of audit log entries for the authenticated company",
     parameters: [
-      resource_type: [in: :query, type: :string, description: "Filter by resource type (e.g. contractor, contract)"],
+      resource_type: [
+        in: :query,
+        type: :string,
+        description: "Filter by resource type (e.g. contractor, contract)"
+      ],
       resource_id: [in: :query, type: :string, description: "Filter by resource ID"],
       action: [in: :query, type: :string, description: "Filter by action"],
       limit: [in: :query, type: :integer, description: "Number of results per page"],
@@ -23,6 +27,7 @@ defmodule ContractorHubWeb.AuditLogController do
       ok: {"Paginated audit logs", "application/json", AuditLogListResponse},
       unauthorized: {"Unauthorized", "application/json", ProblemDetail}
     ]
+  )
 
   def index(conn, params) do
     page = Audit.list_logs(conn.assigns.current_company_id, params)

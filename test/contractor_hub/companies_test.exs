@@ -27,9 +27,12 @@ defmodule ContractorHub.CompaniesTest do
 
   describe "update_company/2" do
     test "updates company fields" do
-      {:ok, company, _} = Companies.register_company(%{
-        "name" => "Old Name", "email" => "test@test.com", "country_code" => "US"
-      })
+      {:ok, company, _} =
+        Companies.register_company(%{
+          "name" => "Old Name",
+          "email" => "test@test.com",
+          "country_code" => "US"
+        })
 
       assert {:ok, updated} = Companies.update_company(company, %{"name" => "New Name"})
       assert updated.name == "New Name"
@@ -38,9 +41,12 @@ defmodule ContractorHub.CompaniesTest do
 
   describe "deactivate_company/1" do
     test "sets deleted_at" do
-      {:ok, company, _} = Companies.register_company(%{
-        "name" => "Dying Corp", "email" => "bye@test.com", "country_code" => "US"
-      })
+      {:ok, company, _} =
+        Companies.register_company(%{
+          "name" => "Dying Corp",
+          "email" => "bye@test.com",
+          "country_code" => "US"
+        })
 
       assert is_nil(company.deleted_at)
       assert {:ok, deactivated} = Companies.deactivate_company(company)
@@ -50,9 +56,12 @@ defmodule ContractorHub.CompaniesTest do
 
   describe "get_active_company/1" do
     test "returns nil for deactivated companies" do
-      {:ok, company, _} = Companies.register_company(%{
-        "name" => "Gone Corp", "email" => "gone@test.com", "country_code" => "US"
-      })
+      {:ok, company, _} =
+        Companies.register_company(%{
+          "name" => "Gone Corp",
+          "email" => "gone@test.com",
+          "country_code" => "US"
+        })
 
       Companies.deactivate_company(company)
       assert is_nil(Companies.get_active_company(company.id))

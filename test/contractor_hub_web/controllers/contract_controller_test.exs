@@ -93,7 +93,8 @@ defmodule ContractorHubWeb.ContractControllerTest do
     test "updates contract", %{conn: conn, company: company, contractor: contractor} do
       contract = insert(:contract, company: company, contractor: contractor)
 
-      conn = patch(conn, ~p"/api/v1/contracts/#{contract.id}", contract: %{title: "Updated Title"})
+      conn =
+        patch(conn, ~p"/api/v1/contracts/#{contract.id}", contract: %{title: "Updated Title"})
 
       response = json_response(conn, 200)["data"]
       assert response["title"] == "Updated Title"
@@ -110,7 +111,11 @@ defmodule ContractorHubWeb.ContractControllerTest do
       assert response["status"] == "active"
     end
 
-    test "fails on already-active contract", %{conn: conn, company: company, contractor: contractor} do
+    test "fails on already-active contract", %{
+      conn: conn,
+      company: company,
+      contractor: contractor
+    } do
       contract = insert(:contract, company: company, contractor: contractor, status: "active")
 
       conn = post(conn, ~p"/api/v1/contracts/#{contract.id}/activate")

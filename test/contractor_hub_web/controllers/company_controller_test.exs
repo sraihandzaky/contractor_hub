@@ -7,11 +7,13 @@ defmodule ContractorHubWeb.CompanyControllerTest do
     test "creates company and returns API key" do
       conn =
         build_conn()
-        |> post(~p"/api/v1/companies", company: %{
-          name: "Acme Corp",
-          email: "admin@acme.com",
-          country_code: "US"
-        })
+        |> post(~p"/api/v1/companies",
+          company: %{
+            name: "Acme Corp",
+            email: "admin@acme.com",
+            country_code: "US"
+          }
+        )
 
       response = json_response(conn, 201)
       assert response["data"]["name"] == "Acme Corp"

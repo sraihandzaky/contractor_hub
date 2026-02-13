@@ -137,7 +137,12 @@ defmodule ContractorHub.ContractorsTest do
       assert length(page1.data) == 2
       assert page1.meta.has_next == true
 
-      page2 = Contractors.list_contractors(company.id, %{"limit" => "2", "after" => page1.meta.next_cursor})
+      page2 =
+        Contractors.list_contractors(company.id, %{
+          "limit" => "2",
+          "after" => page1.meta.next_cursor
+        })
+
       assert length(page2.data) == 2
 
       page1_ids = Enum.map(page1.data, & &1.id)

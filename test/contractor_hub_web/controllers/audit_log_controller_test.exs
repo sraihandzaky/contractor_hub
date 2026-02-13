@@ -12,12 +12,14 @@ defmodule ContractorHubWeb.AuditLogControllerTest do
   describe "GET /api/v1/audit-logs" do
     test "returns paginated audit logs", %{conn: conn} do
       # Creating a contractor generates an audit log
-      post(conn, ~p"/api/v1/contractors", contractor: %{
-        email: "audit@example.com",
-        full_name: "Audit Test",
-        country_code: "US",
-        tax_id: "123-45-6789"
-      })
+      post(conn, ~p"/api/v1/contractors",
+        contractor: %{
+          email: "audit@example.com",
+          full_name: "Audit Test",
+          country_code: "US",
+          tax_id: "123-45-6789"
+        }
+      )
 
       conn = get(conn, ~p"/api/v1/audit-logs")
 

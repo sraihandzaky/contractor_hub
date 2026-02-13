@@ -46,9 +46,9 @@ defmodule ContractorHubWeb.Router do
 
   # OpenAPI docs
   scope "/api" do
-  pipe_through [:api, :openapi]
+    pipe_through [:api, :openapi]
 
-  get "/openapi", OpenApiSpex.Plug.RenderSpec, []
-  get "/docs", OpenApiSpex.Plug.SwaggerUI, path: "/api/openapi"
-end
+    get "/openapi", OpenApiSpex.Plug.RenderSpec, []
+    get "/docs", OpenApiSpex.Plug.SwaggerUI, path: "/api/openapi"
+  end
 end

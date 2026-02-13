@@ -17,7 +17,8 @@ defmodule ContractorHub.Contractors do
   @doc "Onboards a new contractor with compliance validation and audit logging."
   def onboard_contractor(attrs, context) do
     Ecto.Multi.new()
-    |> Ecto.Multi.insert(:contractor,
+    |> Ecto.Multi.insert(
+      :contractor,
       %Contractor{}
       |> Contractor.changeset(Map.put(attrs, "company_id", context.company_id))
     )
@@ -33,7 +34,9 @@ defmodule ContractorHub.Contractors do
       {:ok, %{contractor: contractor}} ->
         ContractorHub.Telemetry.emit_contractor_onboarded(contractor)
         {:ok, contractor}
-      {:error, :contractor, changeset, _} -> {:error, changeset}
+
+      {:error, :contractor, changeset, _} ->
+        {:error, changeset}
     end
   end
 
@@ -108,7 +111,9 @@ defmodule ContractorHub.Contractors do
         {:ok, %{contractor: contractor}} ->
           ContractorHub.Telemetry.emit_contractor_offboarded(contractor)
           {:ok, contractor}
-        {:error, :contractor, changeset, _} -> {:error, changeset}
+
+        {:error, :contractor, changeset, _} ->
+          {:error, changeset}
       end
     end
   end

@@ -38,14 +38,62 @@ IO.puts("Demo API Key: #{raw_key}")
 
 # Contractors across different countries
 contractors_data = [
-  %{full_name: "Sarah Chen", email: "sarah@example.com", country_code: "US", tax_id: "123-45-6789", status: "active"},
-  %{full_name: "Hans Mueller", email: "hans@example.com", country_code: "DE", tax_id: "12345678901", status: "active"},
-  %{full_name: "Ana Silva", email: "ana@example.com", country_code: "BR", tax_id: "123.456.789-00", status: "active"},
-  %{full_name: "Budi Santoso", email: "budi@example.com", country_code: "ID", tax_id: "12.345.678.9-012.345", status: "active"},
-  %{full_name: "James Wilson", email: "james@example.com", country_code: "GB", tax_id: "1234567890", status: "pending"},
-  %{full_name: "Wei Lin Tan", email: "weilin@example.com", country_code: "SG", tax_id: "S1234567A", status: "active"},
-  %{full_name: "Emma de Vries", email: "emma@example.com", country_code: "NL", tax_id: "123456789", status: "active"},
-  %{full_name: "David Thompson", email: "david@example.com", country_code: "CA", tax_id: "123-456-789", status: "offboarded"}
+  %{
+    full_name: "Sarah Chen",
+    email: "sarah@example.com",
+    country_code: "US",
+    tax_id: "123-45-6789",
+    status: "active"
+  },
+  %{
+    full_name: "Hans Mueller",
+    email: "hans@example.com",
+    country_code: "DE",
+    tax_id: "12345678901",
+    status: "active"
+  },
+  %{
+    full_name: "Ana Silva",
+    email: "ana@example.com",
+    country_code: "BR",
+    tax_id: "123.456.789-00",
+    status: "active"
+  },
+  %{
+    full_name: "Budi Santoso",
+    email: "budi@example.com",
+    country_code: "ID",
+    tax_id: "12.345.678.9-012.345",
+    status: "active"
+  },
+  %{
+    full_name: "James Wilson",
+    email: "james@example.com",
+    country_code: "GB",
+    tax_id: "1234567890",
+    status: "pending"
+  },
+  %{
+    full_name: "Wei Lin Tan",
+    email: "weilin@example.com",
+    country_code: "SG",
+    tax_id: "S1234567A",
+    status: "active"
+  },
+  %{
+    full_name: "Emma de Vries",
+    email: "emma@example.com",
+    country_code: "NL",
+    tax_id: "123456789",
+    status: "active"
+  },
+  %{
+    full_name: "David Thompson",
+    email: "david@example.com",
+    country_code: "CA",
+    tax_id: "123-456-789",
+    status: "offboarded"
+  }
 ]
 
 contractors =
@@ -55,7 +103,10 @@ contractors =
       |> Contractor.changeset(Map.put(data, :company_id, company.id))
       |> Repo.insert()
 
-    IO.puts("Contractor: #{contractor.full_name} (#{contractor.country_code}) [#{contractor.status}]")
+    IO.puts(
+      "Contractor: #{contractor.full_name} (#{contractor.country_code}) [#{contractor.status}]"
+    )
+
     contractor
   end)
 
@@ -63,10 +114,25 @@ contractors =
 active_contractors = Enum.filter(contractors, &(&1.status == "active"))
 
 contracts_data = [
-  %{title: "Senior Frontend Engineer", rate_amount: "8000.00", rate_currency: "USD", rate_type: "monthly"},
-  %{title: "Backend Consultant", rate_amount: "120.00", rate_currency: "EUR", rate_type: "hourly"},
+  %{
+    title: "Senior Frontend Engineer",
+    rate_amount: "8000.00",
+    rate_currency: "USD",
+    rate_type: "monthly"
+  },
+  %{
+    title: "Backend Consultant",
+    rate_amount: "120.00",
+    rate_currency: "EUR",
+    rate_type: "hourly"
+  },
   %{title: "Data Analyst", rate_amount: "15000.00", rate_currency: "BRL", rate_type: "monthly"},
-  %{title: "Mobile Developer", rate_amount: "45000000.00", rate_currency: "IDR", rate_type: "monthly"},
+  %{
+    title: "Mobile Developer",
+    rate_amount: "45000000.00",
+    rate_currency: "IDR",
+    rate_type: "monthly"
+  },
   %{title: "DevOps Engineer", rate_amount: "95.00", rate_currency: "GBP", rate_type: "hourly"},
   %{title: "QA Lead", rate_amount: "7500.00", rate_currency: "SGD", rate_type: "monthly"}
 ]
@@ -88,7 +154,9 @@ Enum.zip(active_contractors, contracts_data)
     )
     |> Repo.insert()
 
-  IO.puts("Contract: #{contract.title} (#{contract.rate_currency} #{contract.rate_amount}/#{contract.rate_type})")
+  IO.puts(
+    "Contract: #{contract.title} (#{contract.rate_currency} #{contract.rate_amount}/#{contract.rate_type})"
+  )
 end)
 
 IO.puts("")

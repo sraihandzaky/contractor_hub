@@ -20,7 +20,15 @@ defmodule ContractorHub.Contracts.Contract do
     timestamps()
   end
 
-  @required_fields [:company_id, :contractor_id, :title, :rate_amount, :rate_currency, :rate_type, :start_date]
+  @required_fields [
+    :company_id,
+    :contractor_id,
+    :title,
+    :rate_amount,
+    :rate_currency,
+    :rate_type,
+    :start_date
+  ]
   @optional_fields [:description, :end_date, :country_rules]
 
   def changeset(contract, attrs) do

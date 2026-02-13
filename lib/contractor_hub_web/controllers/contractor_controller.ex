@@ -16,9 +16,9 @@ defmodule ContractorHubWeb.ContractorController do
 
   action_fallback ContractorHubWeb.FallbackController
 
-  tags ["Contractors"]
+  tags(["Contractors"])
 
-  operation :create,
+  operation(:create,
     summary: "Onboard a contractor",
     description: "Creates a new contractor in draft status",
     request_body: {"Contractor params", "application/json", ContractorRequest},
@@ -26,13 +26,18 @@ defmodule ContractorHubWeb.ContractorController do
       created: {"Created contractor", "application/json", ContractorResponse},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
-  operation :index,
+  operation(:index,
     summary: "List contractors",
     description: "Returns a paginated list of contractors for the authenticated company",
     parameters: [
       country_code: [in: :query, type: :string, description: "Filter by country code"],
-      status: [in: :query, type: :string, description: "Filter by status (draft, active, offboarded)"],
+      status: [
+        in: :query,
+        type: :string,
+        description: "Filter by status (draft, active, offboarded)"
+      ],
       search: [in: :query, type: :string, description: "Search by name or email"],
       sort: [in: :query, type: :string, description: "Sort field (e.g. inserted_at, full_name)"],
       limit: [in: :query, type: :integer, description: "Number of results per page"],
@@ -42,8 +47,9 @@ defmodule ContractorHubWeb.ContractorController do
     responses: [
       ok: {"Paginated contractors", "application/json", ContractorListResponse}
     ]
+  )
 
-  operation :show,
+  operation(:show,
     summary: "Get a contractor",
     description: "Returns a single contractor by ID",
     parameters: [
@@ -53,8 +59,9 @@ defmodule ContractorHubWeb.ContractorController do
       ok: {"Contractor details", "application/json", ContractorResponse},
       not_found: {"Not found", "application/json", ProblemDetail}
     ]
+  )
 
-  operation :update,
+  operation(:update,
     summary: "Update a contractor",
     description: "Updates an existing contractor's details",
     parameters: [
@@ -66,8 +73,9 @@ defmodule ContractorHubWeb.ContractorController do
       not_found: {"Not found", "application/json", ProblemDetail},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
-  operation :activate,
+  operation(:activate,
     summary: "Activate a contractor",
     description: "Transitions a contractor from draft to active status",
     parameters: [
@@ -78,8 +86,9 @@ defmodule ContractorHubWeb.ContractorController do
       not_found: {"Not found", "application/json", ProblemDetail},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
-  operation :offboard,
+  operation(:offboard,
     summary: "Offboard a contractor",
     description: "Transitions a contractor to offboarded status",
     parameters: [
@@ -90,6 +99,7 @@ defmodule ContractorHubWeb.ContractorController do
       not_found: {"Not found", "application/json", ProblemDetail},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
   def create(conn, %{"contractor" => contractor_params}) do
     context = build_context(conn)
@@ -116,7 +126,12 @@ defmodule ContractorHubWeb.ContractorController do
     context = build_context(conn)
 
     with {:ok, contractor} <-
-           Contractors.update_contractor(conn.assigns.current_company_id, id, contractor_params, context) do
+           Contractors.update_contractor(
+             conn.assigns.current_company_id,
+             id,
+             contractor_params,
+             context
+           ) do
       render(conn, :show, contractor: contractor)
     end
   end

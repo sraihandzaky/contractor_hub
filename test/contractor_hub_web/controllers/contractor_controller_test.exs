@@ -101,7 +101,10 @@ defmodule ContractorHubWeb.ContractorControllerTest do
     test "updates contractor", %{conn: conn, company: company} do
       contractor = insert(:contractor, company: company)
 
-      conn = patch(conn, ~p"/api/v1/contractors/#{contractor.id}", contractor: %{full_name: "Updated Name"})
+      conn =
+        patch(conn, ~p"/api/v1/contractors/#{contractor.id}",
+          contractor: %{full_name: "Updated Name"}
+        )
 
       response = json_response(conn, 200)["data"]
       assert response["full_name"] == "Updated Name"

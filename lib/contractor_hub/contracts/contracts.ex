@@ -12,6 +12,7 @@ defmodule ContractorHub.Contracts do
       {"contractor_id", Filters.eq(:contractor_id)}
     ]
   end
+
   @sortable_fields [:inserted_at, :title, :start_date, :rate_amount]
 
   @doc "Creates a contract. Validates contractor belongs to same company."
@@ -20,7 +21,8 @@ defmodule ContractorHub.Contracts do
     with {:ok, _contractor} <-
            Contractors.get_contractor(context.company_id, attrs["contractor_id"]) do
       Ecto.Multi.new()
-      |> Ecto.Multi.insert(:contract,
+      |> Ecto.Multi.insert(
+        :contract,
         %Contract{}
         |> Contract.changeset(Map.put(attrs, "company_id", context.company_id))
       )
@@ -90,7 +92,9 @@ defmodule ContractorHub.Contracts do
         {:ok, %{contract: contract}} ->
           ContractorHub.Telemetry.emit_contract_activated(contract)
           {:ok, contract}
-        {:error, :contract, changeset, _} -> {:error, changeset}
+
+        {:error, :contract, changeset, _} ->
+          {:error, changeset}
       end
     end
   end
@@ -115,7 +119,6 @@ defmodule ContractorHub.Contracts do
     end
   end
 
-
   @doc "Terminates an active contract."
   def terminate_contract(company_id, id, context) do
     with {:ok, contract} <- get_contract(company_id, id) do
@@ -135,7 +138,9 @@ defmodule ContractorHub.Contracts do
         {:ok, %{contract: contract}} ->
           ContractorHub.Telemetry.emit_contract_terminated(contract)
           {:ok, contract}
-        {:error, :contract, changeset, _} -> {:error, changeset}
+
+        {:error, :contract, changeset, _} ->
+          {:error, changeset}
       end
     end
   end

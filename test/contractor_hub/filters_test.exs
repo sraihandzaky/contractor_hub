@@ -8,9 +8,28 @@ defmodule ContractorHub.FiltersTest do
 
   setup do
     company = insert(:company)
-    insert(:contractor, company: company, country_code: "US", status: "active", tax_id: "111-11-1111")
-    insert(:contractor, company: company, country_code: "DE", status: "pending", tax_id: "12345678901")
-    insert(:contractor, company: company, country_code: "US", status: "pending", tax_id: "222-22-2222")
+
+    insert(:contractor,
+      company: company,
+      country_code: "US",
+      status: "active",
+      tax_id: "111-11-1111"
+    )
+
+    insert(:contractor,
+      company: company,
+      country_code: "DE",
+      status: "pending",
+      tax_id: "12345678901"
+    )
+
+    insert(:contractor,
+      company: company,
+      country_code: "US",
+      status: "pending",
+      tax_id: "222-22-2222"
+    )
+
     {:ok, company: company}
   end
 
@@ -21,7 +40,6 @@ defmodule ContractorHub.FiltersTest do
       {"search", Filters.ilike(:full_name)}
     ]
   end
-
 
   test "eq filter matches exact value", %{company: company} do
     result =

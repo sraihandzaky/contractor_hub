@@ -10,8 +10,22 @@ defmodule ContractorHub.SortingTest do
     company = insert(:company)
 
     c1 = insert(:contractor, company: company, full_name: "Alice", country_code: "US")
-    c2 = insert(:contractor, company: company, full_name: "Bob", country_code: "DE", tax_id: "12345678901")
-    c3 = insert(:contractor, company: company, full_name: "Charlie", country_code: "GB", tax_id: "1234567890")
+
+    c2 =
+      insert(:contractor,
+        company: company,
+        full_name: "Bob",
+        country_code: "DE",
+        tax_id: "12345678901"
+      )
+
+    c3 =
+      insert(:contractor,
+        company: company,
+        full_name: "Charlie",
+        country_code: "GB",
+        tax_id: "1234567890"
+      )
 
     %{company: company, contractors: [c1, c2, c3]}
   end

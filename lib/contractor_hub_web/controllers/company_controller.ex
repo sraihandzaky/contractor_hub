@@ -16,9 +16,9 @@ defmodule ContractorHubWeb.CompanyController do
 
   action_fallback ContractorHubWeb.FallbackController
 
-  tags ["Companies"]
+  tags(["Companies"])
 
-  operation :create,
+  operation(:create,
     summary: "Register a new company",
     description: "Creates a company account and returns an API key for authentication",
     security: [],
@@ -27,16 +27,18 @@ defmodule ContractorHubWeb.CompanyController do
       created: {"Company with API key", "application/json", CompanyWithKeyResponse},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
-  operation :show,
+  operation(:show,
     summary: "Get current company",
     description: "Returns the authenticated company's details",
     responses: [
       ok: {"Company details", "application/json", CompanyResponse},
       unauthorized: {"Unauthorized", "application/json", ProblemDetail}
     ]
+  )
 
-  operation :update,
+  operation(:update,
     summary: "Update current company",
     description: "Updates the authenticated company's details",
     request_body: {"Company update params", "application/json", CompanyUpdateRequest},
@@ -45,6 +47,7 @@ defmodule ContractorHubWeb.CompanyController do
       unauthorized: {"Unauthorized", "application/json", ProblemDetail},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
   # POST /api/v1/companies — public, returns API key
   @spec create(any(), map()) :: {:error, any()} | Plug.Conn.t()

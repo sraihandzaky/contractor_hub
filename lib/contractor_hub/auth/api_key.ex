@@ -17,7 +17,6 @@ defmodule ContractorHub.Auth.ApiKey do
   @required_fields [:company_id, :key_hash]
   @optional_fields [:label]
 
-
   def changeset(api_key, attrs) do
     api_key
     |> cast(attrs, @required_fields ++ @optional_fields)

@@ -16,9 +16,9 @@ defmodule ContractorHubWeb.ContractController do
 
   action_fallback ContractorHubWeb.FallbackController
 
-  tags ["Contracts"]
+  tags(["Contracts"])
 
-  operation :create,
+  operation(:create,
     summary: "Create a contract",
     description: "Creates a new contract for a contractor in draft status",
     request_body: {"Contract params", "application/json", ContractRequest},
@@ -27,13 +27,22 @@ defmodule ContractorHubWeb.ContractController do
       not_found: {"Contractor not found", "application/json", ProblemDetail},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
-  operation :index,
+  operation(:index,
     summary: "List contracts",
     description: "Returns a paginated list of contracts for the authenticated company",
     parameters: [
-      status: [in: :query, type: :string, description: "Filter by status (draft, active, completed, terminated)"],
-      rate_type: [in: :query, type: :string, description: "Filter by rate type (hourly, daily, weekly, monthly, fixed)"],
+      status: [
+        in: :query,
+        type: :string,
+        description: "Filter by status (draft, active, completed, terminated)"
+      ],
+      rate_type: [
+        in: :query,
+        type: :string,
+        description: "Filter by rate type (hourly, daily, weekly, monthly, fixed)"
+      ],
       contractor_id: [in: :query, type: :string, description: "Filter by contractor ID"],
       sort: [in: :query, type: :string, description: "Sort field (e.g. inserted_at, title)"],
       limit: [in: :query, type: :integer, description: "Number of results per page"],
@@ -43,8 +52,9 @@ defmodule ContractorHubWeb.ContractController do
     responses: [
       ok: {"Paginated contracts", "application/json", ContractListResponse}
     ]
+  )
 
-  operation :show,
+  operation(:show,
     summary: "Get a contract",
     description: "Returns a single contract by ID",
     parameters: [
@@ -54,8 +64,9 @@ defmodule ContractorHubWeb.ContractController do
       ok: {"Contract details", "application/json", ContractResponse},
       not_found: {"Not found", "application/json", ProblemDetail}
     ]
+  )
 
-  operation :update,
+  operation(:update,
     summary: "Update a contract",
     description: "Updates an existing contract's details",
     parameters: [
@@ -67,8 +78,9 @@ defmodule ContractorHubWeb.ContractController do
       not_found: {"Not found", "application/json", ProblemDetail},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
-  operation :activate,
+  operation(:activate,
     summary: "Activate a contract",
     description: "Transitions a contract from draft to active status",
     parameters: [
@@ -79,8 +91,9 @@ defmodule ContractorHubWeb.ContractController do
       not_found: {"Not found", "application/json", ProblemDetail},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
-  operation :complete,
+  operation(:complete,
     summary: "Complete a contract",
     description: "Transitions an active contract to completed status",
     parameters: [
@@ -91,8 +104,9 @@ defmodule ContractorHubWeb.ContractController do
       not_found: {"Not found", "application/json", ProblemDetail},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
-  operation :terminate,
+  operation(:terminate,
     summary: "Terminate a contract",
     description: "Terminates an active contract",
     parameters: [
@@ -103,6 +117,7 @@ defmodule ContractorHubWeb.ContractController do
       not_found: {"Not found", "application/json", ProblemDetail},
       unprocessable_entity: {"Validation error", "application/json", ValidationError}
     ]
+  )
 
   def create(conn, %{"contract" => contract_params}) do
     context = build_context(conn)
@@ -129,7 +144,12 @@ defmodule ContractorHubWeb.ContractController do
     context = build_context(conn)
 
     with {:ok, contract} <-
-           Contracts.update_contract(conn.assigns.current_company_id, id, contract_params, context) do
+           Contracts.update_contract(
+             conn.assigns.current_company_id,
+             id,
+             contract_params,
+             context
+           ) do
       render(conn, :show, contract: contract)
     end
   end
