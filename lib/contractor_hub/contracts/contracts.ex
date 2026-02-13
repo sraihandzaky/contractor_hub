@@ -1,7 +1,16 @@
 defmodule ContractorHub.Contracts do
   @moduledoc "Context for contract lifecycle management."
 
-  alias ContractorHub.{Audit, Contractors, Contracts.Contract, Filters, Paginator, Repo, Scope, Sorting}
+  alias ContractorHub.{
+    Audit,
+    Contractors,
+    Contracts.Contract,
+    Filters,
+    Paginator,
+    Repo,
+    Scope,
+    Sorting
+  }
 
   defp filters do
     [
