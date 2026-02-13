@@ -10,7 +10,18 @@ defmodule ContractorHub.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      listeners: [Phoenix.CodeReloader]
+      listeners: [Phoenix.CodeReloader],
+      test_coverage: [
+        summary: [
+          threshold: 80
+        ],
+        ignore_modules: [
+          ~r/ContractorHubWeb\.Schemas\./,
+          ~r/Jason\.Encoder\./,
+          ContractorHubWeb.ApiSpec,
+          ContractorHubWeb.Gettext
+        ]
+      ]
     ]
   end
 
@@ -64,11 +75,22 @@ defmodule ContractorHub.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup"],
+      setup: ["deps.get", "ecto.setup", "setup.hooks"],
+      "setup.hooks": [
+        "cmd mkdir -p .git/hooks",
+        "cmd ln -sf ../../priv/hooks/pre-commit .git/hooks/pre-commit",
+        "cmd chmod +x .git/hooks/pre-commit"
+      ],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "test"]
+      precommit: [
+        "compile --warnings-as-errors",
+        "deps.unlock --unused",
+        "format",
+        "credo --strict",
+        "test --cover"
+      ]
     ]
   end
 end
