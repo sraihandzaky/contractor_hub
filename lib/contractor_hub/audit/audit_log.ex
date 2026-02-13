@@ -1,4 +1,5 @@
 defmodule ContractorHub.Audit.AuditLog do
+  @moduledoc "Ecto schema and changesets for immutable audit log entries."
   use Ecto.Schema
   import Ecto.Changeset
 

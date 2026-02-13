@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.Router do
+  @moduledoc "Defines API routes and pipelines for the ContractorHub application."
   use ContractorHubWeb, :router
 
   def api_spec, do: ContractorHubWeb.ApiSpec.spec()

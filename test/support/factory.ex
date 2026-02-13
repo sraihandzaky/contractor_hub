@@ -1,4 +1,5 @@
 defmodule ContractorHub.Factory do
+  @moduledoc false
   use ExMachina.Ecto, repo: ContractorHub.Repo
 
   def company_factory do

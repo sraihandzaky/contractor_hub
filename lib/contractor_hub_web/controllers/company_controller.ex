@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.CompanyController do
+  @moduledoc "Handles company registration, retrieval, and updates."
   use ContractorHubWeb, :controller
   use OpenApiSpex.ControllerSpecs
 

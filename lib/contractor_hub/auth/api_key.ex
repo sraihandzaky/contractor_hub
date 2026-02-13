@@ -1,4 +1,5 @@
 defmodule ContractorHub.Auth.ApiKey do
+  @moduledoc "Ecto schema and changesets for API key authentication credentials."
   use Ecto.Schema
   import Ecto.Changeset
 

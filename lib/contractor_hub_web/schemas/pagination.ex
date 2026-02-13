@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.Schemas.PaginationMeta do
+  @moduledoc "OpenAPI schema for cursor-based pagination metadata."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{

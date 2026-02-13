@@ -1,4 +1,5 @@
 defmodule ContractorHub.Companies.Company do
+  @moduledoc "Ecto schema and changesets for company accounts."
   use Ecto.Schema
   import Ecto.Changeset
 

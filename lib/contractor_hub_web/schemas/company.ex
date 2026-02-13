@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.Schemas.CompanyData do
+  @moduledoc "OpenAPI schema for company data fields."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{
@@ -19,6 +20,7 @@ defmodule ContractorHubWeb.Schemas.CompanyData do
 end
 
 defmodule ContractorHubWeb.Schemas.CompanyResponse do
+  @moduledoc "OpenAPI schema for a single company response."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{
@@ -33,6 +35,7 @@ defmodule ContractorHubWeb.Schemas.CompanyResponse do
 end
 
 defmodule ContractorHubWeb.Schemas.CompanyWithKeyResponse do
+  @moduledoc "OpenAPI schema for company registration response with API key."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{
@@ -51,6 +54,7 @@ defmodule ContractorHubWeb.Schemas.CompanyWithKeyResponse do
 end
 
 defmodule ContractorHubWeb.Schemas.CompanyRequest do
+  @moduledoc "OpenAPI schema for company registration requests."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{
@@ -74,6 +78,7 @@ defmodule ContractorHubWeb.Schemas.CompanyRequest do
 end
 
 defmodule ContractorHubWeb.Schemas.CompanyUpdateRequest do
+  @moduledoc "OpenAPI schema for company update requests."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{

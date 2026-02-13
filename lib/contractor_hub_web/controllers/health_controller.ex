@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.HealthController do
+  @moduledoc "Handles health check requests."
   use ContractorHubWeb, :controller
   use OpenApiSpex.ControllerSpecs
 

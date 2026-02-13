@@ -1,4 +1,5 @@
 defmodule ContractorHub.Contractors.Contractor do
+  @moduledoc "Ecto schema and changesets for contractors, including status transitions and country-specific validations."
   use Ecto.Schema
   import Ecto.Changeset
 

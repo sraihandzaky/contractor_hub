@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.Schemas.ContractData do
+  @moduledoc "OpenAPI schema for contract data fields."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{
@@ -42,6 +43,7 @@ defmodule ContractorHubWeb.Schemas.ContractData do
 end
 
 defmodule ContractorHubWeb.Schemas.ContractResponse do
+  @moduledoc "OpenAPI schema for a single contract response."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{
@@ -56,6 +58,7 @@ defmodule ContractorHubWeb.Schemas.ContractResponse do
 end
 
 defmodule ContractorHubWeb.Schemas.ContractListResponse do
+  @moduledoc "OpenAPI schema for a paginated list of contracts."
   require OpenApiSpex
 
   alias ContractorHubWeb.Schemas.PaginationMeta
@@ -76,6 +79,7 @@ defmodule ContractorHubWeb.Schemas.ContractListResponse do
 end
 
 defmodule ContractorHubWeb.Schemas.ContractRequest do
+  @moduledoc "OpenAPI schema for contract creation requests."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{
@@ -106,6 +110,7 @@ defmodule ContractorHubWeb.Schemas.ContractRequest do
 end
 
 defmodule ContractorHubWeb.Schemas.ContractUpdateRequest do
+  @moduledoc "OpenAPI schema for contract update requests."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{

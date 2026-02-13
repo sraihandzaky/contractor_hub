@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.AuditLogController do
+  @moduledoc "Handles paginated audit log queries."
   use ContractorHubWeb, :controller
   use OpenApiSpex.ControllerSpecs
 

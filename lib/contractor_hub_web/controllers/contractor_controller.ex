@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.ContractorController do
+  @moduledoc "Handles contractor CRUD operations and status transitions."
   use ContractorHubWeb, :controller
   use OpenApiSpex.ControllerSpecs
 

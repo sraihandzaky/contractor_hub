@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.CountryController do
+  @moduledoc "Handles requests for supported countries."
   use ContractorHubWeb, :controller
   use OpenApiSpex.ControllerSpecs
 

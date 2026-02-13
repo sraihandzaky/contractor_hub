@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.Endpoint do
+  @moduledoc false
   use Phoenix.Endpoint, otp_app: :contractor_hub
 
   # The session will be stored in the cookie and signed,

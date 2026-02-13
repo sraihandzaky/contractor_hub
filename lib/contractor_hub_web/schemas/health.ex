@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.Schemas.HealthResponse do
+  @moduledoc "OpenAPI schema for the health check response."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{

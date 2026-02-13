@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.ApiSpec do
+  @moduledoc "Generates the OpenAPI specification for the ContractorHub API."
   alias OpenApiSpex.{Info, OpenApi, Paths, Server, SecurityScheme, Components}
 
   @behaviour OpenApi

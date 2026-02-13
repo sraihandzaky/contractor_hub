@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.CompanyJSON do
+  @moduledoc "JSON rendering functions for company responses."
   def render("show.json", %{company: company}) do
     %{data: data(company)}
   end

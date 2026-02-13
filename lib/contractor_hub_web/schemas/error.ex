@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.Schemas.ProblemDetail do
+  @moduledoc "OpenAPI schema for RFC 9457 problem detail error responses."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{
@@ -22,6 +23,7 @@ defmodule ContractorHubWeb.Schemas.ProblemDetail do
 end
 
 defmodule ContractorHubWeb.Schemas.ValidationError do
+  @moduledoc "OpenAPI schema for validation error responses with field-level details."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{

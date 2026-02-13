@@ -6,7 +6,7 @@ defmodule ContractorHubWeb.CountryControllerTest do
 
     response = json_response(conn, 200)
     assert is_list(response["data"])
-    assert length(response["data"]) > 0
+    assert [_ | _] = response["data"]
 
     country = hd(response["data"])
     assert Map.has_key?(country, "code")

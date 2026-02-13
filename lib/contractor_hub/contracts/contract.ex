@@ -1,4 +1,5 @@
 defmodule ContractorHub.Contracts.Contract do
+  @moduledoc "Ecto schema and changesets for contracts, including lifecycle transitions."
   use Ecto.Schema
   import Ecto.Changeset
 

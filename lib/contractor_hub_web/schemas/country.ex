@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.Schemas.CountryResponse do
+  @moduledoc "OpenAPI schema for a supported country."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{
@@ -21,6 +22,7 @@ defmodule ContractorHubWeb.Schemas.CountryResponse do
 end
 
 defmodule ContractorHubWeb.Schemas.CountryListResponse do
+  @moduledoc "OpenAPI schema for the list of supported countries."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{

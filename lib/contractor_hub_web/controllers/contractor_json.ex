@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.ContractorJSON do
+  @moduledoc "JSON rendering functions for contractor responses."
   def render("index.json", %{page: page}) do
     %{
       data: Enum.map(page.data, &data/1),

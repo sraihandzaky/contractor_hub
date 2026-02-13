@@ -1,4 +1,5 @@
 defmodule ContractorHubWeb.Schemas.AuditLogData do
+  @moduledoc "OpenAPI schema for audit log entry fields."
   require OpenApiSpex
 
   OpenApiSpex.schema(%{
@@ -29,6 +30,7 @@ defmodule ContractorHubWeb.Schemas.AuditLogData do
 end
 
 defmodule ContractorHubWeb.Schemas.AuditLogListResponse do
+  @moduledoc "OpenAPI schema for a paginated list of audit log entries."
   require OpenApiSpex
 
   alias ContractorHubWeb.Schemas.PaginationMeta
