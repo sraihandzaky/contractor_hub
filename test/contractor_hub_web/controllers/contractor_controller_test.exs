@@ -77,4 +77,56 @@ defmodule ContractorHubWeb.ContractorControllerTest do
       assert response["data"] == []
     end
   end
+
+  describe "GET /api/v1/contractors/:id" do
+    test "returns contractor", %{conn: conn, company: company} do
+      contractor = insert(:contractor, company: company)
+
+      conn = get(conn, ~p"/api/v1/contractors/#{contractor.id}")
+
+      response = json_response(conn, 200)["data"]
+      assert response["id"] == contractor.id
+      assert response["email"] == contractor.email
+    end
+
+    test "returns 404 for nonexistent contractor", %{conn: conn} do
+      conn = get(conn, ~p"/api/v1/contractors/0")
+
+      response = json_response(conn, 404)
+      assert response["type"] == "not_found"
+    end
+  end
+
+  describe "PATCH /api/v1/contractors/:id" do
+    test "updates contractor", %{conn: conn, company: company} do
+      contractor = insert(:contractor, company: company)
+
+      conn = patch(conn, ~p"/api/v1/contractors/#{contractor.id}", contractor: %{full_name: "Updated Name"})
+
+      response = json_response(conn, 200)["data"]
+      assert response["full_name"] == "Updated Name"
+    end
+  end
+
+  describe "POST /api/v1/contractors/:id/activate" do
+    test "activates a pending contractor", %{conn: conn, company: company} do
+      contractor = insert(:contractor, company: company, status: "pending")
+
+      conn = post(conn, ~p"/api/v1/contractors/#{contractor.id}/activate")
+
+      response = json_response(conn, 200)["data"]
+      assert response["status"] == "active"
+    end
+  end
+
+  describe "POST /api/v1/contractors/:id/offboard" do
+    test "offboards an active contractor", %{conn: conn, company: company} do
+      contractor = insert(:contractor, company: company, status: "active")
+
+      conn = post(conn, ~p"/api/v1/contractors/#{contractor.id}/offboard")
+
+      response = json_response(conn, 200)["data"]
+      assert response["status"] == "offboarded"
+    end
+  end
 end

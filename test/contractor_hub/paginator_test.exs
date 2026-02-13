@@ -86,6 +86,26 @@ defmodule ContractorHub.PaginatorTest do
     assert result.meta.has_next == false
   end
 
+  test "single page sets has_next to false", %{company: company} do
+    result =
+      Contractor
+      |> ContractorHub.Scope.for_company(company.id)
+      |> Paginator.paginate(%{})
+
+    assert length(result.data) == 5
+    assert result.meta.has_next == false
+    assert result.meta.next_cursor != nil
+  end
+
+  test "invalid cursor falls back to first page", %{company: company} do
+    result =
+      Contractor
+      |> ContractorHub.Scope.for_company(company.id)
+      |> Paginator.paginate(%{"after" => "not-valid-base64!!"})
+
+    assert length(result.data) == 5
+  end
+
   test "clamps limit to max of 100", %{company: company} do
     result =
       Contractor

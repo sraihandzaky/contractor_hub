@@ -73,4 +73,40 @@ defmodule ContractorHub.FiltersTest do
     # All factory contractors have "Contractor N" as full_name
     assert length(result) == 3
   end
+
+  test "in_list filter matches comma-separated values", %{company: company} do
+    filter_list = [{"country_code", Filters.in_list(:country_code)}]
+
+    result =
+      Contractor
+      |> ContractorHub.Scope.for_company(company.id)
+      |> Filters.apply_filters(%{"country_code" => "US,DE"}, filter_list)
+      |> Repo.all()
+
+    assert length(result) == 3
+  end
+
+  test "date_gte ignores invalid date string", %{company: company} do
+    filter_list = [{"start", Filters.date_gte(:inserted_at)}]
+
+    result =
+      Contractor
+      |> ContractorHub.Scope.for_company(company.id)
+      |> Filters.apply_filters(%{"start" => "not-a-date"}, filter_list)
+      |> Repo.all()
+
+    assert length(result) == 3
+  end
+
+  test "date_lte ignores invalid date string", %{company: company} do
+    filter_list = [{"end", Filters.date_lte(:inserted_at)}]
+
+    result =
+      Contractor
+      |> ContractorHub.Scope.for_company(company.id)
+      |> Filters.apply_filters(%{"end" => "31-31-2099"}, filter_list)
+      |> Repo.all()
+
+    assert length(result) == 3
+  end
 end
