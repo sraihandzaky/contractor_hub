@@ -37,7 +37,7 @@ docker compose up -d   # starts PostgreSQL
 
 ```bash
 # Clone the repo
-git clone <repo-url> && cd contractor_hub
+gh repo clone sraihandzaky/contractor_hub && cd contractor_hub
 
 # Install dependencies, create DB, run migrations, seed data, install git hooks
 mix setup
